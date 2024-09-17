@@ -1,0 +1,33 @@
+version: "3.1"
+
+services:
+  wordpress-website:
+    image: wordpress
+    restart: always
+    ports:
+    - 3000:80
+    envirnoment:
+      WORDPRESS_DB_HOST:
+      WORDPRESS_DB_USER: shaurya
+      WORDPRESS_DB_PASSWORD: shaurya
+      WORDPRESS_DB_NAME: mydb
+    volumes:
+      -wordpress-data:/var/www/html
+    networks:
+      - milkyway
+
+  wordpress-database:
+    image: mysql:5.7
+    restart: always
+    ports:
+    - 3000:80
+    envirnoment:
+      WORDPRESS_DB_HOST: mydb
+      WORDPRESS_DB_USER: shaurya
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+    volumes:
+      -db:/var/lib/mysql
+    networks:
+      - milkyway
+      
+
